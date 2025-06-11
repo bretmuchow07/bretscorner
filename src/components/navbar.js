@@ -11,7 +11,7 @@ import Contact from '../pages/contact';
 
 function _navbar() {
   return (
-    <Router>
+    <>
       <div>
         <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
           <Container>
@@ -39,7 +39,7 @@ function _navbar() {
           {/* Add more routes here as needed */}
         </Routes>
       </div>
-    </Router>
+    </>
   );
 }
 
