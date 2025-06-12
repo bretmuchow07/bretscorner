@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Logo from '../logo.svg'; // Adjust the path to your logo
 import Home from '../pages/home';
 import About from '../pages/about';
 import Projects from '../pages/projects';
@@ -15,7 +16,16 @@ function _navbar() {
       <div>
         <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand href="/">bret's corner</Navbar.Brand>
+               <Navbar.Brand href="/">
+            <img
+              alt=""
+              src={Logo} // Replace with your logo path
+              width="100"
+              height="50"
+              className="d-inline-block align-top"
+            />{' '}
+           
+          </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav variant='underline' className="mx-auto fw-bold" defaultActiveKey="/home">
