@@ -3,13 +3,14 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
-  faTwitter,
+  faXTwitter,
   faInstagram,
   faLinkedinIn,
 } from "@fortawesome/free-brands-svg-icons";
 import { faSun, faMoon, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useDarkMode } from "../context/DarkModeContext";
 import { Link } from "react-router-dom";
+import "../styles/FooterSendButton.css"; 
 
 function Footer() {
   const { isDarkMode, setIsDarkMode } = useDarkMode();
@@ -40,10 +41,12 @@ function Footer() {
               <Button
                 type="submit"
                 variant="primary"
-                className="position-absolute end-0 top-0 rounded-circle"
-                style={{ width: "40px", height: "40px" }}
+                className="position-absolute end-0 top-0 rounded-circle icon-link-hover animated-send-btn"
+                style={{ width: "40px", height: "40px", display: "flex", justifyContent: "center", alignItems: "center" }}
               >
-                <FontAwesomeIcon icon={faPaperPlane} />
+                <span className="animated-send-icon" style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                </span>
                 <span className="visually-hidden">Subscribe</span>
               </Button>
             </Form>
@@ -84,7 +87,7 @@ function Footer() {
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
               <a href="#" className="btn btn-outline-secondary rounded-circle" aria-label="Twitter">
-                <FontAwesomeIcon icon={faTwitter} />
+                <FontAwesomeIcon icon={faXTwitter} />
               </a>
               <a href="#" className="btn btn-outline-secondary rounded-circle" aria-label="Instagram">
                 <FontAwesomeIcon icon={faInstagram} />

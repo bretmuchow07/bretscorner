@@ -1,0 +1,54 @@
+/* From Uiverse.io by adamgiebl */
+.contact-animated-btn {
+  font-family: inherit;
+  font-size: 20px;
+  background: royalblue;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.contact-animated-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-animated-btn .svg-wrapper {
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-animated-btn:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.contact-animated-btn:hover .svg-wrapper svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.contact-animated-btn:hover span:last-child {
+  transform: translateX(5em);
+}
+
+.contact-animated-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
