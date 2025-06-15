@@ -12,3 +12,14 @@ This isn’t just a portfolio — it’s a corner of the internet that feels lik
 Hey, I’m Bret — a curious mind, builder of things, and someone who finds joy in solving problems through code (and occasionally breaking things to learn how they work).
 
 I’m currently a Computer Systems Engineering student, and this space — Bret’s Corner — is where I share projects that excite me, ideas I’m experimenting with, and stuff I’ve made just for fun. I love creating tools, apps, and little digital artifacts that reflect both what I know and what I’m learning.
+
+## Tech Stack
+This project is built with:
+
+- React + Bootstrap — for the frontend
+- Framer Motion — for some ✨ slick animations
+- Context API — for dark mode and theming
+- A bunch of coffee, probably ☕
+
+## 💬 Why This Exists
+Because not every project needs to be production-grade. Sometimes you just want to make stuff, learn stuff, and share the journey. Bret’s Corner is exactly that.
