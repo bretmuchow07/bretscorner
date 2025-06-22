@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# bret's corner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bret’s Corner is my little digital playground — a cozy spot on the web where I stash the cool things I’ve been working on. It’s not meant to be overly formal or polished — just a collection of side quests, late-night coding sprints, and ideas I couldn’t shake.
 
-## Available Scripts
+Some projects are done, some are forever “in progress,” and others are just experiments I had fun with. Whether it's a quick app, a weird concept, or something I'm surprisingly proud of — it's all here, under one roof.
 
-In the project directory, you can run:
+This isn’t just a portfolio — it’s a corner of the internet that feels like me. Welcome, and feel free to poke around.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 About Me
+Hey, I’m Bret — a curious mind, builder of things, and someone who finds joy in solving problems through code (and occasionally breaking things to learn how they work).
 
-### `npm test`
+I’m currently a Computer Systems Engineering student, and this space — Bret’s Corner — is where I share projects that excite me, ideas I’m experimenting with, and stuff I’ve made just for fun. I love creating tools, apps, and little digital artifacts that reflect both what I know and what I’m learning.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
+This project is built with:
 
-### `npm run build`
+- React + Bootstrap — for the frontend
+- Framer Motion — for some ✨ slick animations
+- Context API — for dark mode and theming
+- A bunch of coffee, probably ☕
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 💬 Why This Exists
+Because not every project needs to be production-grade. Sometimes you just want to make stuff, learn stuff, and share the journey. Bret’s Corner is exactly that.
