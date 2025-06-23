@@ -11,7 +11,7 @@ import { faSun, faMoon, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useDarkMode } from "../context/DarkModeContext";
 import { Link, Routes, Route } from "react-router-dom";
 import "../styles/FooterSendButton.css";
-import Dashboard from "../pages/admin/dashboard";
+import Dashboard from "../admin/dashboard";
 
 function Footer() {
   const { isDarkMode, setIsDarkMode } = useDarkMode();

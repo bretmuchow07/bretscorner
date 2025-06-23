@@ -17,7 +17,7 @@ function SideNav() {
         <FontAwesomeIcon icon={faUser} className="me-3" />
         Profile
       </a>
-      <a href="#" className={linkClass}>
+      <a href="./admin/posts/index" className={linkClass}>
         <FontAwesomeIcon icon={faFileAlt} className="me-3" />
         Posts
       </a>
