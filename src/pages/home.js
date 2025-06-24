@@ -13,15 +13,8 @@ function Home() {
   const loading = false; // Set to true to show loaders
 
   return (
-    <>
-      {/* {isDarkMode && (
-        <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
-        />
-      )} */}
+    <div>
+     
          <Carousel>
         <Carousel.Item>
           <img
@@ -175,7 +168,7 @@ function Home() {
           </Row>
         </Container>
       </Container>
-    </>
+    </div>
   )
 }
 
