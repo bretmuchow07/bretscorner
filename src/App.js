@@ -10,15 +10,13 @@ import Footer from './components/footer';
 
 function App() {
   return (
-    <DarkModeProvider>
-      <div className="d-flex flex-column min-vh-100 App">
-        <Navbar />
-
-     
-
-        <Footer />
-      </div>
-    </DarkModeProvider>
+    <div className="d-flex flex-column min-vh-100 App">
+      <Navbar />
+      <main className="flex-grow-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

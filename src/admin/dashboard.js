@@ -1,35 +1,16 @@
-import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { useDarkMode } from "../context/DarkModeContext";
-import SideNav from "../components/sidenav";
+import React from "react";
+// import { signOut } from "../services/authService";
+// import { useNavigate } from "react-router-dom";
 
 
 function Dashboard() {
-  const { isDarkMode } = useDarkMode();
-
-  // Hide system nav on mount, restore on unmount
-  useEffect(() => {
-    const sysNav = document.getElementById("system-nav");
-    if (sysNav) sysNav.style.display = "none";
-    return () => {
-      if (sysNav) sysNav.style.display = "";
-    };
-  }, []);
-
-  // Bootstrap classes for dark/light mode
-const containerClass = `d-flex flex-row ${isDarkMode ? "bg-dark text-white" : "bg-light text-dark"}`;
+  // const navigate = useNavigate();
 
   return (
-  <div className="d-flex flex-column min-vh-100">
-  <div className="d-flex flex-grow-1" style={{ flexDirection: "row" }}>
-    <SideNav />
-    <main className="flex-grow-1 p-4" style={{ marginLeft: 220 }}>
+    <div>
       <p className="h2">Dashboard</p>
-    </main>
-  </div>
-
-
-</div>
+      <p>Welcome to the admin panel. You can manage posts from the sidebar.</p>
+    </div>
   );
 }
 

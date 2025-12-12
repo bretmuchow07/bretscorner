@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert, Card } from "react-bootstrap";
-import { signIn } from '../services/authService';
+import { signUp } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from "../context/DarkModeContext";
 
-function Login() {
+function Signup() {
   const { isDarkMode } = useDarkMode();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -16,16 +18,23 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setSuccess('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
 
     try {
-      const { user } = await signIn(email, password);
-      if (!user.email_confirmed_at) {
-        setError('Please verify your email before signing in.');
-        return;
-      }
-      navigate('/admin');
+      await signUp(email, password);
+      setSuccess('Registration successful! Please check your email to verify your account.');
+      // Optionally redirect to login after a delay
+      setTimeout(() => {
+        navigate('/admin/login');
+      }, 3000);
     } catch (err) {
-      setError('Invalid email or password');
+      setError(err.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -42,8 +51,9 @@ function Login() {
       <Container style={{ maxWidth: "400px" }}>
         <Card className={`shadow-lg ${cardClass}`}>
           <Card.Body className="p-5">
-            <h2 className="text-center mb-4 fw-bold">Admin Login</h2>
+            <h2 className="text-center mb-4 fw-bold">Admin Signup</h2>
             {error && <Alert variant="danger">{error}</Alert>}
+            {success && <Alert variant="success">{success}</Alert>}
 
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail" className="mb-3">
@@ -58,7 +68,7 @@ function Login() {
                 />
               </Form.Group>
 
-              <Form.Group controlId="formBasicPassword" className="mb-4">
+              <Form.Group controlId="formBasicPassword" className="mb-3">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
@@ -70,14 +80,26 @@ function Login() {
                 />
               </Form.Group>
 
+              <Form.Group controlId="formBasicConfirmPassword" className="mb-4">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className={inputClass}
+                />
+              </Form.Group>
+
               <Button variant="primary" type="submit" className="w-100 mb-3" disabled={loading}>
-                {loading ? 'Signing in...' : 'Sign In'}
+                {loading ? 'Signing up...' : 'Sign Up'}
               </Button>
             </Form>
 
             <div className="text-center mt-3">
               <small>
-                Don't have an account? <a href="/admin/signup" className={linkClass}>Sign up</a>
+                Already have an account? <a href="/admin/login" className={linkClass}>Sign In</a>
               </small>
             </div>
           </Card.Body>
@@ -87,4 +109,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

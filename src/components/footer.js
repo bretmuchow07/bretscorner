@@ -11,7 +11,6 @@ import { faSun, faMoon, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useDarkMode } from "../context/DarkModeContext";
 import { Link, Routes, Route } from "react-router-dom";
 import "../styles/FooterSendButton.css";
-import Dashboard from "../admin/dashboard";
 
 function Footer() {
   const { isDarkMode, setIsDarkMode } = useDarkMode();
@@ -26,7 +25,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="border-top bg-body-tertiary text-body py-5 mt-5">
+      <footer className={`border-top py-5 mt-auto ${isDarkMode ? "bg-dark text-white border-secondary" : "bg-body-tertiary text-body"}`}>
         <Container>
           <Row className="gy-4">
             <Col lg={4} md={6}>
@@ -203,9 +202,10 @@ function Footer() {
           </Row>
         </Container>
       </footer>
-      <Routes>
+      {/* Routes for admin dashboard if needed */}
+      {/* <Routes>
         <Route path="/admin/dashboard" element={<Dashboard />} />
-      </Routes>
+      </Routes> */}
     </>
   );
 }
