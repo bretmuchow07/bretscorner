@@ -1,21 +1,48 @@
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import '../App.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Image1 from '../assets/images/iambret.png';
 import Image2 from '../assets/images/othervibe.jpg';
 import Image3 from '../assets/images/sidequest.jpg';
-import Aurora from '../components/aurora'; 
+import Aurora from '../components/aurora';
 import { useDarkMode } from "../context/DarkModeContext";
 import Loader from '../components/Loader';
+import { getRecentPosts } from '../services/databaseService';
+import PostCard from '../components/PostCard';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const { isDarkMode } = useDarkMode();
-  const loading = false; // Set to true to show loaders
+  const [posts, setPosts] = useState([]);
+  const [recentPosts, setRecentPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        // Fetch posts for the main area
+        const data = await getRecentPosts(10);
+        setPosts(data);
+        // Also use the same data for the sidebar "Recent Posts" (limited to 5)
+        setRecentPosts(data.slice(0, 5));
+      } catch (err) {
+        console.error("Failed to fetch posts:", err);
+        setError("Failed to load posts. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div>
-     
-         <Carousel>
+
+      <Carousel>
         <Carousel.Item>
           <img
             className="d-block w-100 carousel-img"
@@ -56,114 +83,70 @@ function Home() {
         <Container className='my-4'>
           <Row className='g-4 d-flex'>
             <div className='col-md-8'>
-              <h1>Posts</h1>
-              <Row className="g-4">
-                 <Card className="bg-dark text-white">
-                  <Card.Img src="holder.js/100px270" alt="Card image" />
-                  <Card.ImgOverlay>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in
-                      to additional content. This content is a little bit longer.
-                    </Card.Text>
-                    <Card.Text>Last updated 3 mins ago</Card.Text>
-                  </Card.ImgOverlay>
-                </Card>
-                <Col md={6}>
-                  {loading ? (
-                    <Loader />
+              <h1 style={{ color: isDarkMode ? '#fff' : 'inherit' }}>Posts</h1>
+              {loading ? (
+                <Loader />
+              ) : error ? (
+                <div className="alert alert-danger">{error}</div>
+              ) : (
+                <Row className="g-4">
+                  {posts.length > 0 ? (
+                    posts.map(post => (
+                      <Col md={6} key={post.id} className="d-flex">
+                        <PostCard post={post} />
+                      </Col>
+                    ))
                   ) : (
-                    <Card className='h-100 w-100'>
-                      <Card.Img variant="top" src="holder.js/100px180" className='img-thumbnail' />
-                      <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                          Some quick example text to build on the card title and make up the
-                          bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                      </Card.Body>
-                    </Card>
+                    <p className={isDarkMode ? 'text-white' : ''}>No posts found.</p>
                   )}
-                </Col>
-                <Col md={6}>
-                  {loading ? (
-                    <Loader />
-                  ) : (
-                    <Card className='h-100 w-100'>
-                      <Card.Img variant="top" src="holder.js/100px180" className='img-thumbnail' />
-                      <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                          Some quick example text to build on the card title and make up the
-                          bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                      </Card.Body>
-                    </Card>
-                  )}
-                </Col>
-                {/* Add more <Col md={6} md="auto">...</Col> for more cards */}
-                        </Row>
+                </Row>
+              )}
+            </div>
+            <div className='col-md-4'>
+              <h5 style={{ color: isDarkMode ? '#fff' : 'inherit' }}>Search</h5>
+              <Form.Control type="text" size="md" placeholder="Search posts..." className='mb-3' />
+              <Button variant="primary" size="md" className='mb-3'>Search</Button>
+
+              <h5 style={{ color: isDarkMode ? '#fff' : 'inherit' }}>Recent Posts</h5>
+              <ul className='list-unstyled'>
+                {recentPosts.map(post => (
+                  <li key={post.id}>
+                    <div className="d-flex align-items-center mb-2">
+                      {/* Placeholder image if no thumbnail */}
+                      <div
+                        className="rounded me-2 d-flex align-items-center justify-content-center bg-secondary text-white"
+                        style={{ width: 48, height: 48, fontSize: '0.8rem' }}
+                      >
+                        {post.title.charAt(0)}
                       </div>
-                      <div className='col-md-4'>
-                        <h5>Search</h5>
-                        <Form.Control type="text" size="md" placeholder="Search posts..." className='mb-3' />
-                        <Button variant="primary" size="md" className='mb-3'>Search</Button>
-                        <h5>Recent Posts</h5>
-                        <ul className='list-unstyled'>
-                        <li>
-                          <div className="d-flex align-items-center mb-2">
-                          <img src={Image1} alt="Post 1" width={48} height={48} className="rounded me-2" />
-                          <div>
-                            <a href="#" className="fw-bold d-block mb-0">Post 1</a>
-                            <small className="text-muted">2 hours ago</small>
-                          </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex align-items-center mb-2">
-                          <img src={Image2} alt="Post 2" width={48} height={48} className="rounded me-2" />
-                          <div>
-                            <a href="#" className="fw-bold d-block mb-0">Post 2</a>
-                            <small className="text-muted">5 hours ago</small>
-                          </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex align-items-center mb-2">
-                          <img src={Image3} alt="Post 3" width={48} height={48} className="rounded me-2" />
-                          <div>
-                            <a href="#" className="fw-bold d-block mb-0">Post 3</a>
-                            <small className="text-muted">1 day ago</small>
-                          </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="d-flex align-items-center mb-2">
-                          <img src={Image1} alt="Post 4" width={48} height={48} className="rounded me-2" />
-                          <div>
-                            <a href="#" className="fw-bold d-block mb-0">Post 4</a>
-                            <small className="text-muted">3 days ago</small>
-                          </div>
-                          </div>
-                        </li>
-                        </ul>
-                        <h5>Tags</h5>
-                        <span className='badge bg-secondary me-1 fs-6'>Tag1</span>
-                        <span className='badge bg-secondary me-1 fs-6'>Tag2</span>
-                        <span className='badge bg-secondary me-1 fs-6'>Tag3</span>
-                        <span className='badge bg-secondary me-1 fs-6'>Tag4</span>
-                        <span className='badge bg-secondary me-1 fs-6'>Tag5</span>
-                        <h5>Categories</h5>
-                        <ul className="list-group">
-                        <li className="list-group-item">An item</li>
-                        <li className="list-group-item">A second item</li>
-                        <li className="list-group-item">A third item</li>
-                        <li className="list-group-item">A fourth item</li>
-                        <li className="list-group-item">And a fifth one</li>
-                        </ul>
-                        {/* Sidebar or other content */}
+                      <div>
+                        <Link
+                          to={`/post/${post.slug}`}
+                          className="fw-bold d-block mb-0 text-decoration-none"
+                          style={{ color: isDarkMode ? '#90cdf4' : '#0d6efd' }}
+                        >
+                          {post.title}
+                        </Link>
+                        <small className="text-muted">
+                          {new Date(post.created_at).toLocaleDateString()}
+                        </small>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <h5 style={{ color: isDarkMode ? '#fff' : 'inherit', marginTop: '1rem' }}>Tags</h5>
+              <span className='badge bg-secondary me-1 fs-6'>Tag1</span>
+              <span className='badge bg-secondary me-1 fs-6'>Tag2</span>
+              <span className='badge bg-secondary me-1 fs-6'>Tag3</span>
+
+              <h5 style={{ color: isDarkMode ? '#fff' : 'inherit', marginTop: '1rem' }}>Categories</h5>
+              <ul className="list-group">
+                <li className="list-group-item">An item</li>
+                <li className="list-group-item">A second item</li>
+                <li className="list-group-item">A third item</li>
+              </ul>
             </div>
           </Row>
         </Container>

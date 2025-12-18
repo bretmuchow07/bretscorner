@@ -1,7 +1,10 @@
 import { Container } from "react-bootstrap";
-import Particles from "../components/particles"; 
-import "../App.css"; 
+import Particles from "../components/particles";
+import "../App.css";
 import { useDarkMode } from "../context/DarkModeContext";
+import CommentsSection from "../components/CommentsSection";
+import LikeButton from "../components/LikeButton";
+import NewsletterSignup from "../components/NewsletterSignup";
 
 function SideQuest() {
   const { isDarkMode } = useDarkMode();
@@ -39,6 +42,14 @@ function SideQuest() {
           Stay tuned for more exciting adventures and projects that will be added
           here!
         </p>
+
+        <div className="mt-5 pt-4 border-top">
+          <div className="d-flex justify-content-between mb-4">
+            <LikeButton entityId="sidequests-page" entityType="page" />
+          </div>
+          <NewsletterSignup />
+          <CommentsSection entityId="sidequests-page" entityType="page" />
+        </div>
       </Container>
     </div>
   );

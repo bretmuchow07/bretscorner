@@ -15,9 +15,10 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/home';
 import About from './pages/about';
 import Projects from './pages/projects';
+import ProjectView from './pages/ProjectView'; // New
 import Contact from './pages/contact';
 import SideQuests from './pages/sidequest';
-// import Post from './pages/post';
+import PostView from './pages/PostView'; // New
 
 // Admin Pages
 import Dashboard from './admin/dashboard';
@@ -38,9 +39,10 @@ root.render(
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="projects" element={<Projects />} />
+          <Route path="project/:id" element={<ProjectView />} />
           <Route path="contact" element={<Contact />} />
           <Route path="sidequests" element={<SideQuests />} />
-          {/* <Route path="post/:id" element={<Post />} /> */}
+          <Route path="post/:slug" element={<PostView />} />
         </Route>
 
         {/* Admin Layout */}

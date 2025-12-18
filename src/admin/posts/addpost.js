@@ -143,7 +143,7 @@ const AddPost = () => {
                     <div style={{
                         border: `1px solid ${isDarkMode ? "#374151" : "#d1d5db"}`,
                         borderRadius: '8px',
-                        minHeight: '400px',
+                        minHeight: '800px',
                         backgroundColor: isDarkMode ? "#1f2937" : "#fff",
                         overflow: 'hidden',
                         color: isDarkMode ? "#e5e7eb" : "#000"
